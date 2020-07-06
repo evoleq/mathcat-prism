@@ -19,7 +19,7 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
-/*
+
 kotlin {
     /* Targets configuration omitted.
     *  To find out how to configure the targets, please follow the link:
@@ -54,6 +54,8 @@ kotlin {
                 implementation(kotlin("reflect"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
                 implementation(project(":mathcat-core"))
+                implementation(project(":mathcat-morphism"))
+                implementation(project(":mathcat-structure"))
             }
         }
         val commonTest by getting {
@@ -64,8 +66,6 @@ kotlin {
         }
     }
 }
-*/
-/*
 tasks{
 val licenseFormatJvmMain by creating(com.hierynomus.gradle.license.tasks.LicenseFormat::class) {
         source = fileTree("$projectDir/src/jvmMain/kotlin") {
@@ -86,6 +86,3 @@ val licenseFormatJvmMain by creating(com.hierynomus.gradle.license.tasks.License
         finalizedBy(licenseFormatJsMain, licenseFormatCommonMain, licenseFormatJvmMain)
     }
 }
-
- */
-
