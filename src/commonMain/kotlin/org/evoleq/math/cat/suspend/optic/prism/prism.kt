@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.evoleq.math.cat.suspend.prism
+package org.evoleq.math.cat.suspend.optic.prism
 
 import kotlinx.coroutines.CoroutineScope
 import org.evoleq.math.cat.adt.Either
