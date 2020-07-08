@@ -16,5 +16,22 @@
 package org.evoleq.math.cat.optic.prism
 
 import org.evoleq.math.cat.adt.Either
+import org.evoleq.math.cat.marker.MathCatDsl
 
-data class Prism<S, T, A, B>(val match: (S)->Either<A, T>,val build: (B)->T)
+interface Prism<S, T, A, B>{
+    val match: (S)->Either<A, T>
+    val build: (B)->T
+}
+
+@MathCatDsl
+@Suppress("FunctionName")
+fun <S, T, A, B> Prism(
+    match: (S)->Either<A, T>,
+    build: (B)->T
+): Prism<S, T, A, B> = object : Prism<S, T, A, B> {
+    override val match: (S) -> Either<A, T>
+        get() = match
+    override val build: (B) -> T
+        get() = build
+    
+}

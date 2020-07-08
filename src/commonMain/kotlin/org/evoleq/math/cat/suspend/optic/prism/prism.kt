@@ -17,8 +17,22 @@ package org.evoleq.math.cat.suspend.optic.prism
 
 import kotlinx.coroutines.CoroutineScope
 import org.evoleq.math.cat.adt.Either
+import org.evoleq.math.cat.marker.MathCatDsl
 
-data class Prism<S, T, A, B>(
-    val match: suspend CoroutineScope.(S)->Either<A, T>,
-    val build: suspend CoroutineScope.(B)->T
-)
+interface  Prism<S, T, A, B> {
+    val match: suspend CoroutineScope.(S) -> Either<A, T>
+    val build: suspend CoroutineScope.(B) -> T
+}
+
+@MathCatDsl
+@Suppress("FunctionName")
+fun <S, T, A, B> Prism(
+    match: suspend CoroutineScope.(S) -> Either<A, T>,
+    build: suspend CoroutineScope.(B) -> T
+): Prism<S, T, A, B> = object :Prism<S, T, A, B> {
+    override val match: suspend CoroutineScope.(S) -> Either<A, T>
+        get() = match
+    
+    override val build: suspend CoroutineScope.(B) -> T
+        get() = build
+}
