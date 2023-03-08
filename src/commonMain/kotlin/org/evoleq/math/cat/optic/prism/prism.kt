@@ -16,11 +16,30 @@
 package org.evoleq.math.cat.optic.prism
 
 import org.evoleq.math.cat.adt.Either
+import org.evoleq.math.cat.adt.Sum.Companion.lift2
 import org.evoleq.math.cat.marker.MathCatDsl
+import org.evoleq.math.cat.morphism.o
 
 interface Prism<S, T, A, B>{
     val match: (S)->Either<A, T>
     val build: (B)->T
+/*
+    @MathCatDsl
+    infix fun <U> map(f: (T)->U): Prism<S, U, A, B> = Prism(
+        match = lift2<A, T, U>(f) o match,
+        build = f o build
+    )
+
+    @MathCatDsl
+    infix fun <R> contraMap(f: (R)->S): Prism<R, T, A, B> = Prism(
+        match = match o f,
+        build = build
+    )
+
+    @MathCatDsl
+    fun <R, U> diMap(f: (R)->S, g: (T)->U): Prism<R, U, A, B> = contraMap (f) map g
+
+ */
 }
 
 @MathCatDsl
